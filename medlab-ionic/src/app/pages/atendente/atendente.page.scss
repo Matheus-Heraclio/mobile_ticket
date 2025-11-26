@@ -1,0 +1,132 @@
+.atendente-content {
+  --background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+}
+
+.container {
+  min-height: 100vh;
+  padding: 2rem;
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 2.25rem;
+  font-weight: bold;
+  color: #1f2937;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.guiche-card, .senha-atual-card, .fila-card {
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+}
+
+.departamento-text {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-top: 0.5rem;
+}
+
+.departamento-nome {
+  font-weight: 600;
+}
+
+.chamar-button {
+  margin-bottom: 1.5rem;
+}
+
+.senha-content {
+  text-align: center;
+  padding: 2rem;
+}
+
+.senha-label {
+  font-size: 1.5rem;
+  color: #4b5563;
+  margin-bottom: 1rem;
+}
+
+.senha-numero {
+  font-size: 3.75rem;
+  font-weight: bold;
+  color: #2563eb;
+  margin-bottom: 1rem;
+}
+
+.senha-tipo {
+  font-size: 1.25rem;
+  color: #6b7280;
+  margin-bottom: 0.5rem;
+}
+
+.senha-data {
+  font-size: 0.875rem;
+  color: #9ca3af;
+  margin-bottom: 1.5rem;
+}
+
+.acoes-container {
+  margin-top: 1rem;
+  
+  ion-button {
+    margin-bottom: 1rem;
+  }
+}
+
+.alert {
+  border-radius: 8px;
+  padding: 1rem;
+  margin-top: 1rem;
+  
+  p {
+    margin: 0;
+    font-weight: 600;
+  }
+  
+  &.alert-warning {
+    background-color: #fef3c7;
+    border: 2px solid #fbbf24;
+    color: #92400e;
+  }
+  
+  &.alert-success {
+    background-color: #d1fae5;
+    border: 2px solid #10b981;
+    color: #065f46;
+  }
+}
+
+.tempo-text {
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}
+
+.fila-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #1f2937;
+  margin-bottom: 1rem;
+}
+
+.fila-numero {
+  font-size: 1.875rem;
+  font-weight: bold;
+  color: #2563eb;
+}
+
+.proxima-senha {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 1.75rem;
+  }
+  
+  .senha-numero {
+    font-size: 2.5rem;
+  }
+}

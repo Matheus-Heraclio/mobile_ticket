@@ -1,0 +1,109 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Sistema de Senhas - Totem</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="totem-content">
+  <div class="container">
+    <h1 class="title">Retirada de Senhas</h1>
+    
+    <!-- Alerta de horário de funcionamento -->
+    <ion-card *ngIf="!horarioFuncionamento" color="warning" class="horario-alert">
+      <ion-card-content>
+        <div class="alert-content">
+          <ion-icon name="time-outline" size="large"></ion-icon>
+          <div>
+            <h2>Fora do horário de funcionamento</h2>
+            <p>O sistema opera das 7h às 17h</p>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Mensagem de erro -->
+    <ion-card *ngIf="mensagemErro" color="danger" class="erro-alert">
+      <ion-card-content>
+        <div class="alert-content">
+          <ion-icon name="alert-circle-outline" size="large"></ion-icon>
+          <p>{{ mensagemErro }}</p>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Informações sobre os tipos de senha -->
+    <ion-card class="info-card">
+      <ion-card-content>
+        <h3>Tipos de Atendimento:</h3>
+        <div class="tipo-info">
+          <ion-badge color="danger">SP</ion-badge>
+          <span>Atendimento Prioritário (idosos, gestantes, PCD)</span>
+        </div>
+        <div class="tipo-info">
+          <ion-badge color="primary">SG</ion-badge>
+          <span>Atendimento Geral</span>
+        </div>
+        <div class="tipo-info">
+          <ion-badge color="success">SE</ion-badge>
+          <span>Retirada de Exames</span>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Botões de emissão -->
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" sizeMd="4">
+          <app-botao-grande
+            texto="Atendimento Prioritário"
+            cor="vermelho"
+            [disabled]="!horarioFuncionamento"
+            (onClick)="emitirSenha(TipoSenha.SP)">
+          </app-botao-grande>
+        </ion-col>
+        
+        <ion-col size="12" sizeMd="4">
+          <app-botao-grande
+            texto="Atendimento Geral"
+            cor="azul"
+            [disabled]="!horarioFuncionamento"
+            (onClick)="emitirSenha(TipoSenha.SG)">
+          </app-botao-grande>
+        </ion-col>
+        
+        <ion-col size="12" sizeMd="4">
+          <app-botao-grande
+            texto="Retirada de Exames"
+            cor="verde"
+            [disabled]="!horarioFuncionamento"
+            (onClick)="emitirSenha(TipoSenha.SE)">
+          </app-botao-grande>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <!-- Exibição da senha gerada -->
+    <div *ngIf="senhaGerada" class="senha-gerada">
+      <ion-card class="senha-card">
+        <ion-card-content class="senha-content">
+          <div class="senha-header">
+            <ion-icon name="ticket-outline" size="large"></ion-icon>
+          </div>
+          <p class="senha-label">Sua senha:</p>
+          <p class="senha-numero">{{ senhaGerada.numero }}</p>
+          <ion-badge [color]="senhaGerada.tipo === TipoSenha.SP ? 'danger' : senhaGerada.tipo === TipoSenha.SG ? 'primary' : 'success'" class="senha-badge">
+            {{ obterTipoTexto(senhaGerada.tipo) }}
+          </ion-badge>
+          <p class="senha-data">{{ formatarData(senhaGerada.dataEmissao) }}</p>
+          <div class="senha-footer">
+            <ion-icon name="information-circle-outline"></ion-icon>
+            <p>Aguarde ser chamado no painel</p>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+</ion-content>

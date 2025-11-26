@@ -1,0 +1,14 @@
+<ion-card class="senha-card" [ngClass]="classeBorda">
+  <ion-card-content>
+    <div class="card-flex">
+      <div>
+        <p class="senha-numero">{{ senha.numero }}</p>
+        <p class="senha-tipo">{{ obterTipoTexto(senha.tipo) }}</p>
+      </div>
+      <div class="text-right">
+        <p class="guiche-text">Guichê {{ senha.guiche }}</p>
+        <p class="hora-text">{{ formatarData(senha.dataChamada!) }}</p>
+      </div>
+    </div>
+  </ion-card-content>
+</ion-card>

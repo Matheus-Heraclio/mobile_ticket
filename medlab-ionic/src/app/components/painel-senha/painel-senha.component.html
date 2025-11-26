@@ -1,0 +1,15 @@
+<ion-card class="senha-card">
+  <ion-card-content class="card-content">
+    <div class="text-center">
+      <p class="senha-numero">{{ senha.numero }}</p>
+      <p class="senha-tipo">{{ obterTipoTexto(senha.tipo) }}</p>
+      <div class="guiche-container">
+        <div class="guiche-box">
+          <p class="guiche-label">Guichê</p>
+          <p class="guiche-numero">{{ senha.guiche }}</p>
+        </div>
+      </div>
+      <p class="senha-hora">{{ formatarHora(senha.dataChamada!) }}</p>
+    </div>
+  </ion-card-content>
+</ion-card>

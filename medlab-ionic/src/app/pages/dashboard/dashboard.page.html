@@ -1,0 +1,156 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Sistema de Senhas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="dashboard-content">
+  <div class="container">
+    <h1 class="title">Dashboard / Administração</h1>
+    
+    <!-- Estatísticas Gerais -->
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" sizeMd="6" sizeLg="3">
+          <ion-card class="stat-card stat-blue">
+            <ion-card-content>
+              <p class="stat-label">Total Emitidas</p>
+              <p class="stat-value">{{ estatisticas?.totalEmitidas || 0 }}</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        
+        <ion-col size="12" sizeMd="6" sizeLg="3">
+          <ion-card class="stat-card stat-green">
+            <ion-card-content>
+              <p class="stat-label">Total Atendidas</p>
+              <p class="stat-value">{{ estatisticas?.totalAtendidas || 0 }}</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        
+        <ion-col size="12" sizeMd="6" sizeLg="3">
+          <ion-card class="stat-card stat-yellow">
+            <ion-card-content>
+              <p class="stat-label">Não Atendidas</p>
+              <p class="stat-value">{{ estatisticas?.totalNaoAtendidas || 0 }}</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        
+        <ion-col size="12" sizeMd="6" sizeLg="3">
+          <ion-card class="stat-card stat-purple">
+            <ion-card-content>
+              <p class="stat-label">Taxa de Atendimento</p>
+              <p class="stat-value">{{ calcularTaxaAtendimento() }}%</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <!-- Estatísticas por Tipo -->
+    <ion-card class="tipo-card">
+      <ion-card-content>
+        <h2 class="section-title">Estatísticas por Tipo</h2>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="12" sizeMd="4">
+              <div class="tipo-stat tipo-sp">
+                <p class="tipo-label">SP - Serviço Prioritário</p>
+                <p class="tipo-value">
+                  {{ estatisticas?.porTipo?.SP?.emitidas || 0 }} emitidas | 
+                  {{ estatisticas?.porTipo?.SP?.atendidas || 0 }} atendidas
+                </p>
+              </div>
+            </ion-col>
+            
+            <ion-col size="12" sizeMd="4">
+              <div class="tipo-stat tipo-sg">
+                <p class="tipo-label">SG - Serviço Geral</p>
+                <p class="tipo-value">
+                  {{ estatisticas?.porTipo?.SG?.emitidas || 0 }} emitidas | 
+                  {{ estatisticas?.porTipo?.SG?.atendidas || 0 }} atendidas
+                </p>
+              </div>
+            </ion-col>
+            
+            <ion-col size="12" sizeMd="4">
+              <div class="tipo-stat tipo-se">
+                <p class="tipo-label">SE - Serviço de Exame</p>
+                <p class="tipo-value">
+                  {{ estatisticas?.porTipo?.SE?.emitidas || 0 }} emitidas | 
+                  {{ estatisticas?.porTipo?.SE?.atendidas || 0 }} atendidas
+                </p>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Filtros de Relatório -->
+    <ion-card class="filtros-card">
+      <ion-card-content>
+        <h2 class="section-title">Filtros de Relatório</h2>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="12" sizeMd="4">
+              <ion-item lines="none">
+                <ion-label position="stacked">Período</ion-label>
+                <ion-select [(ngModel)]="filtroPeriodo" (ionChange)="aplicarFiltro()" interface="popover">
+                  <ion-select-option value="hoje">Hoje</ion-select-option>
+                  <ion-select-option value="semana">Esta Semana</ion-select-option>
+                  <ion-select-option value="mes">Este Mês</ion-select-option>
+                  <ion-select-option value="todos">Todos</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+            
+            <ion-col size="12" sizeMd="4">
+              <ion-item lines="none">
+                <ion-label position="stacked">Tipo</ion-label>
+                <ion-select [(ngModel)]="filtroTipo" (ionChange)="aplicarFiltro()" interface="popover">
+                  <ion-select-option value="todos">Todos</ion-select-option>
+                  <ion-select-option value="SP">SP</ion-select-option>
+                  <ion-select-option value="SG">SG</ion-select-option>
+                  <ion-select-option value="SE">SE</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+            
+            <ion-col size="12" sizeMd="4">
+              <ion-item lines="none">
+                <ion-label position="stacked">Status</ion-label>
+                <ion-select [(ngModel)]="filtroStatus" (ionChange)="aplicarFiltro()" interface="popover">
+                  <ion-select-option value="todos">Todos</ion-select-option>
+                  <ion-select-option value="aguardando">Aguardando</ion-select-option>
+                  <ion-select-option value="chamada">Chamada</ion-select-option>
+                  <ion-select-option value="atendida">Atendida</ion-select-option>
+                  <ion-select-option value="naoAtendida">Não Atendida</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        
+        <div class="actions-container">
+          <ion-button color="danger" (click)="limparSenhasDoDia()">
+            Limpar Senhas do Dia
+          </ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Tabela de Senhas -->
+    <ion-card class="tabela-card">
+      <ion-card-content>
+        <h2 class="section-title">Relatório Detalhado</h2>
+        <app-tabela-senhas [senhas]="senhasFiltradas"></app-tabela-senhas>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Sistema de Senhas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="painel-content">
+  <div class="container">
+    <h1 class="title">Painel de Chamadas</h1>
+    
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" sizeMd="6" sizeLg="4" *ngFor="let senha of ultimasSenhas">
+          <app-painel-senha [senha]="senha"></app-painel-senha>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <!-- Mensagem quando não há senhas -->
+    <div *ngIf="ultimasSenhas.length === 0" class="no-senhas">
+      <p class="no-senhas-text">Aguardando chamadas...</p>
+    </div>
+  </div>
+</ion-content>

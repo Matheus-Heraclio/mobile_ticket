@@ -1,0 +1,32 @@
+<ion-app>
+  <ion-menu contentId="main-content">
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-title>Sistema de Senhas</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-menu-toggle auto-hide="false">
+          <ion-item routerLink="/totem" routerDirection="root" routerLinkActive="active-link">
+            <ion-icon slot="start" name="desktop-outline"></ion-icon>
+            <ion-label>Totem</ion-label>
+          </ion-item>
+          <ion-item routerLink="/painel" routerDirection="root" routerLinkActive="active-link">
+            <ion-icon slot="start" name="tv-outline"></ion-icon>
+            <ion-label>Painel</ion-label>
+          </ion-item>
+          <ion-item routerLink="/atendente" routerDirection="root" routerLinkActive="active-link">
+            <ion-icon slot="start" name="person-outline"></ion-icon>
+            <ion-label>Atendente</ion-label>
+          </ion-item>
+          <ion-item routerLink="/dashboard" routerDirection="root" routerLinkActive="active-link">
+            <ion-icon slot="start" name="stats-chart-outline"></ion-icon>
+            <ion-label>Dashboard</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="main-content"></ion-router-outlet>
+</ion-app>

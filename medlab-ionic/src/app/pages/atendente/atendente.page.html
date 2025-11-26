@@ -1,0 +1,122 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Sistema de Senhas - Atendente</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="atendente-content">
+  <div class="container">
+    <h1 class="title">Painel do Atendente</h1>
+    
+    <!-- Seleção de Guichê -->
+    <ion-card class="guiche-card">
+      <ion-card-content>
+        <ion-item lines="none">
+          <ion-label position="stacked">Guichê Atual</ion-label>
+          <ion-select [(ngModel)]="guicheAtual" (ionChange)="onGuicheChange($event.detail.value)" interface="popover">
+            <ion-select-option *ngFor="let g of guiches" [value]="g">
+              Guichê {{ g }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+        <p class="departamento-text">
+          <ion-badge color="medium">Guichê {{ guicheAtual }}</ion-badge>
+          <span class="info-text">Atende todos os tipos de senha</span>
+        </p>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Botão Chamar Próximo -->
+    <div class="chamar-button">
+      <app-botao-grande
+        texto="Chamar Próximo"
+        cor="amarelo"
+        [disabled]="!temProximaSenha"
+        (onClick)="chamarProximo()">
+      </app-botao-grande>
+    </div>
+
+    <!-- Senha Chamada -->
+    <ion-card *ngIf="senhaAtual" class="senha-atual-card">
+      <ion-card-content class="senha-content">
+        <p class="senha-label">Senha Atual</p>
+        <p class="senha-numero">{{ senhaAtual.numero }}</p>
+        <ion-badge [color]="obterCorTipo(senhaAtual.tipo)" class="senha-badge">
+          {{ obterTipoTexto(senhaAtual.tipo) }}
+        </ion-badge>
+        <p class="senha-data">Chamada: {{ formatarData(senhaAtual.dataChamada!) }}</p>
+        
+        <div *ngIf="tempoMedioEsperado > 0" class="tempo-esperado">
+          <ion-icon name="time-outline"></ion-icon>
+          <span>Tempo médio esperado: {{ formatarTempo(tempoMedioEsperado) }}</span>
+        </div>
+        
+        <div *ngIf="!senhaAtual.naoAtendida && !senhaAtual.atendida" class="acoes-container">
+          <ion-button
+            *ngIf="!senhaAtual.dataAtendimentoInicio"
+            expand="block"
+            color="success"
+            size="large"
+            (click)="iniciarAtendimento()">
+            <ion-icon slot="start" name="play"></ion-icon>
+            Iniciar Atendimento
+          </ion-button>
+          
+          <ion-button
+            *ngIf="senhaAtual.dataAtendimentoInicio && !senhaAtual.atendida"
+            expand="block"
+            color="danger"
+            size="large"
+            (click)="finalizarAtendimento()">
+            <ion-icon slot="start" name="checkmark"></ion-icon>
+            Finalizar Atendimento
+          </ion-button>
+        </div>
+
+        <div *ngIf="senhaAtual.naoAtendida" class="alert alert-warning">
+          <ion-icon name="warning"></ion-icon>
+          <p>Esta senha não foi atendida (descartada automaticamente)</p>
+        </div>
+
+        <div *ngIf="senhaAtual.atendida" class="alert alert-success">
+          <ion-icon name="checkmark-circle"></ion-icon>
+          <p>Atendimento finalizado com sucesso!</p>
+          <p class="tempo-text">Tempo de atendimento: {{ formatarTempo(senhaAtual.tempoAtendimento || 0) }}</p>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Informações da Fila -->
+    <ion-card class="fila-card">
+      <ion-card-content>
+        <h2 class="fila-title">
+          <ion-icon name="people"></ion-icon>
+          Fila de Espera
+        </h2>
+        <div class="fila-stats">
+          <div class="stat-item">
+            <span class="stat-label">Total:</span>
+            <span class="stat-value">{{ tamanhoFila }}</span>
+          </div>
+          <div class="stat-item">
+            <ion-badge color="danger">SP: {{ contagemPorTipo.SP }}</ion-badge>
+          </div>
+          <div class="stat-item">
+            <ion-badge color="primary">SG: {{ contagemPorTipo.SG }}</ion-badge>
+          </div>
+          <div class="stat-item">
+            <ion-badge color="success">SE: {{ contagemPorTipo.SE }}</ion-badge>
+          </div>
+        </div>
+        
+        <div *ngIf="tamanhoFila === 0" class="fila-vazia">
+          <ion-icon name="checkmark-done-circle"></ion-icon>
+          <p>Nenhuma senha aguardando atendimento</p>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

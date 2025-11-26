@@ -1,0 +1,38 @@
+<div class="table-container">
+  <table class="senhas-table">
+    <thead>
+      <tr>
+        <th>Número</th>
+        <th>Tipo</th>
+        <th>Emissão</th>
+        <th>Chamada</th>
+        <th>Guichê</th>
+        <th>Status</th>
+        <th>Tempo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let senha of senhas">
+        <td class="senha-numero">{{ senha.numero }}</td>
+        <td>
+          <span class="badge" [ngClass]="getBadgeClass(senha.tipo)">
+            {{ senha.tipo }}
+          </span>
+        </td>
+        <td class="text-sm">{{ formatarData(senha.dataEmissao) }}</td>
+        <td class="text-sm">
+          {{ senha.dataChamada ? formatarData(senha.dataChamada) : '-' }}
+        </td>
+        <td class="text-sm">{{ senha.guiche || '-' }}</td>
+        <td>
+          <span class="badge" [ngClass]="getStatusClass(senha)">
+            {{ getStatusTexto(senha) }}
+          </span>
+        </td>
+        <td class="text-sm">
+          {{ senha.tempoAtendimento ? senha.tempoAtendimento + ' min' : '-' }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

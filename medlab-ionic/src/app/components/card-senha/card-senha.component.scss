@@ -1,0 +1,55 @@
+.senha-card {
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-left: 4px solid;
+}
+
+.card-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.senha-numero {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #1f2937;
+}
+
+.senha-tipo {
+  font-size: 0.875rem;
+  color: #4b5563;
+  margin-top: 0.25rem;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.guiche-text {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+.hora-text {
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin-top: 0.25rem;
+}
+
+.border-red-500 {
+  border-left-color: #ef4444;
+}
+
+.border-blue-500 {
+  border-left-color: #3b82f6;
+}
+
+.border-green-500 {
+  border-left-color: #10b981;
+}
+
+.border-gray-500 {
+  border-left-color: #6b7280;
+}

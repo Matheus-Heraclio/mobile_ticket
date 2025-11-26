@@ -1,0 +1,44 @@
+.custom-button {
+  height: 128px;
+  font-size: 2.25rem;
+  font-weight: bold;
+  margin: 0.5rem 0;
+  transition: all 0.2s;
+  
+  &:hover {
+    transform: scale(1.05);
+  }
+  
+  &:active {
+    transform: scale(0.95);
+  }
+  
+  &[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.bg-blue-600 {
+  --background: #2563eb;
+  --background-hover: #1d4ed8;
+  --color: white;
+}
+
+.bg-green-600 {
+  --background: #16a34a;
+  --background-hover: #15803d;
+  --color: white;
+}
+
+.bg-red-600 {
+  --background: #dc2626;
+  --background-hover: #b91c1c;
+  --color: white;
+}
+
+.bg-yellow-400 {
+  --background: #facc15;
+  --background-hover: #ca8a04;
+  --color: #1f2937;
+}
