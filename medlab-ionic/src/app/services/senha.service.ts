@@ -54,7 +54,7 @@ export class SenhaService {
     
     // Validação de horário de funcionamento (7h - 17h)
     const hora = hoje.getHours();
-    if (hora < 7 || hora <= 17) {
+    if (hora < 7 || hora >= 17) {
       throw new Error('Fora do horário de funcionamento. O sistema opera das 7h às 17h.');
     }
     const dataStr = this.formatarData(hoje);
