@@ -51,6 +51,10 @@ Siga os passos abaixo para configurar e executar o projeto:
     ng serve
     ```
     O aplicativo será aberto automaticamente no seu navegador padrão em `http://localhost:4200/`.
+
+3. **Pasta do Projeto:**
+
+   Abrir o Projeto na pasta `medlab-ionic` para a sua Execução.
     
 ## Colaboradores
 
