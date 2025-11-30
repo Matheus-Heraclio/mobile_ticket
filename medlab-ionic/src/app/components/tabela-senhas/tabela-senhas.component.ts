@@ -40,4 +40,16 @@ export class TabelaSenhasComponent {
     if (senha.dataChamada) return 'Chamada';
     return 'Aguardando';
   }
+
+  formatarTempo(minutos: number | undefined | null): string {
+    if (minutos === undefined || minutos === null) return '-';
+    // Garante que o valor é um número antes de usar toFixed
+    if (typeof minutos !== 'number') return '-'; 
+    // Se menor que 1 minuto, mostra em segundos
+    if (minutos < 1) {
+      const segundos = minutos * 60;
+      return `${segundos.toFixed(1)} seg`;
+    }
+    return `${minutos.toFixed(2)} min`;
+  }
 }

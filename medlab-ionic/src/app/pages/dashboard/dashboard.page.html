@@ -145,6 +145,90 @@
       </ion-card-content>
     </ion-card>
 
+    <!-- Relatório de Tempo Médio -->
+    <ion-card class="relatorio-tm-card">
+      <ion-card-header (click)="toggleRelatorioTM()">
+        <ion-card-title class="section-title">Tempo Médio de Atendimento</ion-card-title>
+        <ion-icon [name]="mostrarRelatorioTM ? 'chevron-up-outline' : 'chevron-down-outline'" slot="end"></ion-icon>
+      </ion-card-header>
+      <ion-card-content *ngIf="mostrarRelatorioTM">
+        <ion-grid>
+          <ion-row class="header-row">
+            <ion-col size="3">Tipo</ion-col>
+            <ion-col size="3">Média</ion-col>
+            <ion-col size="3">Mínimo</ion-col>
+            <ion-col size="3">Máximo</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="3">Geral</ion-col>
+            <ion-col size="3">{{ formatarTempo(relatorioTM?.geral?.media) }}</ion-col>
+            <ion-col size="3">{{ formatarTempo(relatorioTM?.geral?.min) }}</ion-col>
+            <ion-col size="3">{{ formatarTempo(relatorioTM?.geral?.max) }}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="3">Prioritária (SP)</ion-col>
+            <ion-col size="3">{{ formatarTempo(relatorioTM?.SP?.media) }}</ion-col>
+            <ion-col size="3">{{ formatarTempo(relatorioTM?.SP?.min) }}</ion-col>
+            <ion-col size="3">{{ formatarTempo(relatorioTM?.SP?.max) }}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="3">Geral (SG)</ion-col>
+            <ion-col size="3">{{ formatarTempo(relatorioTM?.SG?.media) }}</ion-col>
+            <ion-col size="3">{{ formatarTempo(relatorioTM?.SG?.min) }}</ion-col>
+            <ion-col size="3">{{ formatarTempo(relatorioTM?.SG?.max) }}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="3">Exames (SE)</ion-col>
+            <ion-col size="3">{{ formatarTempo(relatorioTM?.SE?.media) }}</ion-col>
+            <ion-col size="3">{{ formatarTempo(relatorioTM?.SE?.min) }}</ion-col>
+            <ion-col size="3">{{ formatarTempo(relatorioTM?.SE?.max) }}</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Relatório de Tempo Médio -->
+    <ion-card class="relatorio-tm-card">
+      <ion-card-header (click)="toggleRelatorioTM()">
+        <ion-card-title class="section-title">Tempo Médio de Atendimento</ion-card-title>
+        <ion-icon [name]="mostrarRelatorioTM ? 'chevron-up-outline' : 'chevron-down-outline'" slot="end"></ion-icon>
+      </ion-card-header>
+      <ion-card-content *ngIf="mostrarRelatorioTM">
+        <ion-grid>
+          <ion-row class="header-row">
+            <ion-col size="3">Tipo</ion-col>
+            <ion-col size="3">Média</ion-col>
+            <ion-col size="3">Mínimo</ion-col>
+            <ion-col size="3">Máximo</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="3">Geral</ion-col>
+            <ion-col size="3">{{ formatarTempo(relatorioTM?.geral?.media) }}</ion-col>
+            <ion-col size="3">{{ formatarTempo(relatorioTM?.geral?.min) }}</ion-col>
+            <ion-col size="3">{{ formatarTempo(relatorioTM?.geral?.max) }}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="3">Prioritária (SP)</ion-col>
+            <ion-col size="3">{{ formatarTempo(relatorioTM?.SP?.media) }}</ion-col>
+            <ion-col size="3">{{ formatarTempo(relatorioTM?.SP?.min) }}</ion-col>
+            <ion-col size="3">{{ formatarTempo(relatorioTM?.SP?.max) }}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="3">Geral (SG)</ion-col>
+            <ion-col size="3">{{ formatarTempo(relatorioTM?.SG?.media) }}</ion-col>
+            <ion-col size="3">{{ formatarTempo(relatorioTM?.SG?.min) }}</ion-col>
+            <ion-col size="3">{{ formatarTempo(relatorioTM?.SG?.max) }}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="3">Exames (SE)</ion-col>
+            <ion-col size="3">{{ formatarTempo(relatorioTM?.SE?.media) }}</ion-col>
+            <ion-col size="3">{{ formatarTempo(relatorioTM?.SE?.min) }}</ion-col>
+            <ion-col size="3">{{ formatarTempo(relatorioTM?.SE?.max) }}</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+
     <!-- Tabela de Senhas -->
     <ion-card class="tabela-card">
       <ion-card-content>

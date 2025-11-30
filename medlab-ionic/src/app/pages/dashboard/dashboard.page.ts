@@ -127,10 +127,16 @@ export class DashboardPage implements OnInit {
     this.mostrarRelatorioTM = !this.mostrarRelatorioTM;
   }
 
-  formatarTempo(minutos: number): string {
-    if (minutos === 0) return 'N/A';
-    if (minutos < 1) return '< 1 min';
-    return `${minutos.toFixed(1)} min`;
+  formatarTempo(minutos: number | undefined | null): string {
+    if (minutos === undefined || minutos === null) return 'N/A';
+    // Garante que o valor é um número antes de usar toFixed
+    if (typeof minutos !== 'number') return 'N/A'; 
+    // Se menor que 1 minuto, mostra em segundos
+    if (minutos < 1) {
+      const segundos = minutos * 60;
+      return `${segundos.toFixed(1)} seg`;
+    }
+    return `${minutos.toFixed(2)} min`; // Ajustado para 2 casas decimais para maior precisão
   }
 
   obterTipoTexto(tipo: TipoSenha): string {

@@ -142,7 +142,7 @@ export class FilaService {
       
       // Calcula tempo real de atendimento
       const tempoMs: number = senha.dataAtendimentoFim.getTime() - senha.dataAtendimentoInicio.getTime();
-      senha.tempoAtendimento = Math.round(tempoMs / 60000); // em minutos
+      senha.tempoAtendimento = tempoMs / 60000; // em minutos com precisão decimal
       
       this.senhaService.atualizarSenha(senha);
     }
